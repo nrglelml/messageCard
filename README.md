@@ -5,7 +5,7 @@
 Bu proje, sevdiğim kişiye küçük, eğlenceli ve interaktif bir mesaj göndermek için hazırlanmıştır. <br>
 *Hayır cevabının bir seçenek olmadığı o an!* 😉
 
-<a href="https://[KullanıcıAdın].github.io/[Repoİsmi]/" target="_blank">
+<a href="https://github.com/nrglelml/messageCard.git" target="_blank">
   <img src="https://img.shields.io/badge/Canlı_Demo-Sürprizi_Gör-ff69b4?style=for-the-badge&logo=heart&logoColor=white" alt="Live Demo" />
 </a>
 
@@ -43,7 +43,7 @@ Eğer bu projeyi kendi bilgisayarında çalıştırmak veya sevgiline uyarlamak 
 
 1.  Bu repository'yi klonla:
     ```bash
-    git clone [https://github.com/](https://github.com/)[KullanıcıAdın]/[Repoİsmi].git
+    git clone https://github.com/nrglelml/messageCard.git
     ```
 2.  Klasörün içindeki `index.html` dosyasını tarayıcında aç.
 3.  Kendi resimlerini/giflerini ve mesajlarını ekle!
@@ -53,7 +53,5 @@ Eğer bu projeyi kendi bilgisayarında çalıştırmak veya sevgiline uyarlamak 
 <div align="center">
 
 ### ❤️ Made with Love
-
-Bu proje **[Senin İsmin]** tarafından geliştirilmiştir.
 
 </div>
