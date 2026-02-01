@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sana Bir Sorum Var ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+        margin: 0;
+        overflow: hidden;
+        padding: 20px;
+        box-sizing: border-box;
+        position: relative;
+      }
+
+      h1 {
+        color: #d63384;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        text-align: center;
+        line-height: 1.3;
+        z-index: 10;
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+      }
+
+      .container {
+        text-align: center;
+        width: 100%;
+        max-width: 600px;
+        position: relative;
+        z-index: 10;
+      }
+
+      .intro-img {
+        max-width: 180px;
+        height: auto;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 25px;
+        flex-wrap: wrap;
+        z-index: 10;
+      }
+
+      button {
+        padding: 15px 35px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        font-weight: bold;
+      }
+
+      #yesBtn {
+        background: linear-gradient(to right, #11998e, #38ef7d);
+        color: white;
+        z-index: 10;
+        marginbottom: 20;
+      }
+
+      #noBtn {
+        background: linear-gradient(to right, #cb2d3e, #ef473a);
+        color: white;
+        position: relative;
+      }
+
+      #message {
+        display: none;
+        margin-top: 10px;
+        text-align: center;
+        width: 100%;
+        z-index: 20;
+      }
+
+      #message img {
+        max-width: 90%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(214, 51, 132, 0.3);
+        border: 5px solid #fff;
+        animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+      }
+
+      #message2 {
+        color: #c2185b;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-top: 25px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: textSlideUp 1s ease forwards;
+        animation-delay: 0.6s;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+      }
+
+      .heart-bg {
+        position: absolute;
+        bottom: -50px;
+        background-color: rgba(255, 107, 129, 0.5);
+        width: 20px;
+        height: 20px;
+        transform: rotate(45deg);
+        animation: flyUp 10s linear infinite;
+        z-index: 1;
+      }
+
+      .heart-bg::before,
+      .heart-bg::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: inherit;
+        border-radius: 50%;
+      }
+      .heart-bg::before {
+        top: -10px;
+        left: 0;
+      }
+      .heart-bg::after {
+        left: -10px;
+        top: 0;
+      }
+
+      @keyframes popIn {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes textSlideUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes flyUp {
+        0% {
+          transform: translateY(0) rotate(45deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateY(-110vh) rotate(45deg);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="hearts-container"></div>
+
+    <div class="container">
+      <img
+        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R6bWJ5aW56bWJ5aW56bWJ5aW56bWJ5aW56bWJ5aW4mZXA9djFfc3RpY2tlcnNfc2VhcmNoJmN0PXM/cLS1cfxvGOPVpf9g3y/giphy.gif"
+        alt="Cute Bear"
+        class="intro-img"
+      />
+
+      <h1>Benimle Daha Çok İlgilenir Misin?</h1>
+
+      <div class="buttons">
+        <button id="yesBtn">EVET</button>
+        <button id="noBtn">HAYIR</button>
+      </div>
+
+      <div id="message">
+        <img src="me.gif" alt="Mutlu Son GIF" />
+        <div id="message2">Hadiiii! İlgilen Artık ❤️</div>
+      </div>
+    </div>
+
+    <script>
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+      const message = document.getElementById("message");
+      const h1 = document.querySelector("h1");
+      const introImg = document.querySelector(".intro-img");
+
+      let yesSize = 1.1;
+
+      function moveButton() {
+        const maxX = window.innerWidth - noBtn.offsetWidth - 30;
+        const maxY = window.innerHeight - noBtn.offsetHeight - 30;
+
+        const x = Math.max(10, Math.random() * maxX);
+        const y = Math.max(10, Math.random() * maxY);
+
+        noBtn.style.position = "fixed";
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+
+        if (yesSize < 5) {
+          yesSize += 0.2;
+          yesBtn.style.transform = `scale(${yesSize})`;
+        }
+      }
+
+      ["mouseover", "touchstart", "click"].forEach((eventType) => {
+        noBtn.addEventListener(eventType, (e) => {
+          e.preventDefault();
+          moveButton();
+        });
+      });
+
+      function createHearts() {
+        const heartContainer = document.getElementById("hearts-container");
+        for (let i = 0; i < 15; i++) {
+          const heart = document.createElement("div");
+          heart.classList.add("heart-bg");
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.animationDuration = Math.random() * 3 + 5 + "s";
+          heart.style.animationDelay = Math.random() * 5 + "s";
+          const colors = [
+            "rgba(255, 107, 129, 0.4)",
+            "rgba(255, 71, 87, 0.4)",
+            "rgba(214, 48, 49, 0.3)",
+          ];
+          heart.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+          document.body.appendChild(heart);
+        }
+      }
+      createHearts();
+
+      yesBtn.addEventListener("click", () => {
+        document.querySelector(".buttons").style.display = "none";
+        h1.style.display = "none";
+        introImg.style.display = "none";
+
+        document.body.style.background = "#ffe6e9";
+        message.style.display = "block";
+
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ["#ff6b81", "#ff4757", "#ffffff"],
+        });
+
+        setTimeout(() => {
+          confetti({
+            particleCount: 100,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+          });
+          confetti({
+            particleCount: 100,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+          });
+        }, 300);
+      });
+    </script>
+  </body>
+</html>
